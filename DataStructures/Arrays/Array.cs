@@ -48,9 +48,59 @@ namespace DataStructures.Arrays
             InnerList[Count++] = item;
         }
 
-        public void Remove(T item)
+        public bool RemoveLast()
         {
-         
+            if (Count == 0)
+            {
+                Console.WriteLine("There is no more item to be removed.");
+                return false;
+            }
+            else
+            {
+                T[] newArray = new T[Count-1];
+                for(int i = 0; i < Count-1; i++)
+                {
+                    newArray[i] = InnerList[i];
+                }
+                InnerList = newArray;
+                Count--;
+                return true;
+            }
+        }
+
+        public bool RemoveAt(int index)
+        {
+            if(Count == 0)
+            {
+                return this.RemoveLast();                
+            }
+            else if(index >= Count || index < 0)
+            {
+                Console.WriteLine("Index is out of boundaries.");
+                return false;
+            }
+            else
+            {
+                InnerList[index] = default;
+                T[] newArray = new T[Count - 1];
+                int j = 0;
+                for(int i = 0; i< Count; i++)
+                {
+                
+                    if (InnerList[i].Equals(default(T)) && i == index)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        newArray [j] = InnerList[i];
+                        j++;
+                    }
+                }
+           
+                InnerList = newArray;
+                return true;
+            }
         }
 
         public T GetElementAt(int index)
