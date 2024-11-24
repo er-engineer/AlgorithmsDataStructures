@@ -48,6 +48,11 @@ namespace DataStructures.Arrays
             InnerList[Count++] = item;
         }
 
+        public void Remove(T item)
+        {
+         
+        }
+
         public T GetElementAt(int index)
         { 
             return InnerList[index];
