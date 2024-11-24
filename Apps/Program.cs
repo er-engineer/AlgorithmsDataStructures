@@ -6,8 +6,8 @@ namespace Apps
     {
         static void Main(string[] args)
         {
-            var array = new Array<int>(10,0,30,40,50,60);
-            array.RemoveAt(2);
+            var array = new Array<int>(1,2,3,4,5,6);
+            array.Insert(3, 20);
             
             foreach (var item in array)
                 Console.WriteLine(item);

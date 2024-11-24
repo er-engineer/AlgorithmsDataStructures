@@ -103,6 +103,34 @@ namespace DataStructures.Arrays
             }
         }
 
+        public void Insert(int index, T item)
+        {
+            T[] newArray = new T[Count + 1];
+            int j = 0;
+
+            if (index >= Count + 1 || index < 0)
+            {
+                Console.WriteLine("Index is out of boundaries.");
+            }
+            else
+            {
+                for (int i = 0; i < Count + 1; i++)
+                {
+                    if (index == i)
+                    {
+                        newArray[i] = item;
+                    }
+                    else
+                    {
+                        newArray[i] = InnerList[j];
+                        j++;
+                    }
+                }
+                InnerList = newArray;
+            }  
+            
+        }
+
         public T GetElementAt(int index)
         { 
             return InnerList[index];
