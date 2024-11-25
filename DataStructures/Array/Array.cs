@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStructures.Arrays
+namespace DataStructures.Array
 {
     public class Array<T> : IEnumerable<T>, ICloneable
     {
         public int Count { get; private set; }
         private T[] InnerList;
-        public int Capacity => InnerList.Length;
 
         public Array()
         {
