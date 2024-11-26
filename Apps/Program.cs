@@ -7,8 +7,13 @@ namespace Apps
     {
         static void Main(string[] args)
         {
-            var linkedlist = new SinglyLinkedList<int>();
-            
+            var array = new int[] { 1,2,3,4,5,6};
+            var linkedlist = new SinglyLinkedList<int>(array);
+
+            foreach (var item in linkedlist)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
