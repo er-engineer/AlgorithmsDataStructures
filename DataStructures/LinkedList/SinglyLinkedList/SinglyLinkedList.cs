@@ -22,6 +22,44 @@ namespace DataStructures.LinkedList.SinglyLinkedList
         {
             
         }
+        public void RemoveFirst()
+        {
+            if (isHeadNull)
+            {
+                throw new Exception("There is nothing to remove.");
+            }
+            Head = Head.Next;
+        }
+
+        public void RemoveLast()
+        {
+            if (isHeadNull)
+                RemoveFirst();
+            
+            var current = new SinglyLinkedListNode<T>();
+            current = Head;
+            while(current.Next.Next != null)
+                current = current.Next;
+            current.Next = null;
+        }
+
+        public void Remove(SinglyLinkedListNode<T> node)
+        {
+            var current = new SinglyLinkedListNode<T>();
+            current = Head;
+            if (node.Equals(Head))
+            {
+                RemoveFirst();
+                return;
+            }
+
+            while (!current.Next.Equals(node))
+            {
+                current = current.Next;
+            }
+
+            current.Next = node.Next;
+        }
 
         public void AddFirst(T value)
         {

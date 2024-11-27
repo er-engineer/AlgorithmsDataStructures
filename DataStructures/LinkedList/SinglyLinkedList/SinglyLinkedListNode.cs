@@ -15,6 +15,11 @@ namespace DataStructures.LinkedList.SinglyLinkedList
         {   
             Value = value;
         }
+
+        public SinglyLinkedListNode()
+        {
+                
+        }
         public override string ToString() => $"{Value}";
         
     }
