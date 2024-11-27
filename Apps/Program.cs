@@ -1,4 +1,4 @@
-﻿using DataStructures.Arrays;
+﻿using DataStructures.Array;
 
 namespace Apps
 {
@@ -6,12 +6,7 @@ namespace Apps
     {
         static void Main(string[] args)
         {
-            var array = new Array<int>(1,2,3,4,5,6);
-            array.Insert(3, 20);
-            
-            foreach (var item in array)
-                Console.WriteLine(item);
-            
+          
         }
     }
 }
