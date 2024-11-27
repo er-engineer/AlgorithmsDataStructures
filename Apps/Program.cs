@@ -1,4 +1,5 @@
 ﻿using DataStructures.Array;
+using DataStructures.LinkedList.DoublyLinkedList;
 using DataStructures.LinkedList.SinglyLinkedList;
 
 namespace Apps
@@ -7,13 +8,13 @@ namespace Apps
     {
         static void Main(string[] args)
         {
-            var array = new int[] { 1,2,3,4,5,6};
-            var linkedlist = new SinglyLinkedList<int>(array);
-            linkedlist.Remove(5);
-            foreach (var item in linkedlist)
-            {
-                Console.WriteLine(item);
-            }
+            var linkedList = new DoublyLinkedList<int>();
+            linkedList.AddLast(15);
+            linkedList.AddLast(25);
+            linkedList.AddLast(45);
+            linkedList.AddLast(455);
+            linkedList.AddLast(65);
+
         }
     }
 }
