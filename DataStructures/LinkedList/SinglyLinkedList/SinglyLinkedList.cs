@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataStructures.LinkedList.SinglyLinkedList
 {
+    public class SinglyLinkedList<T> : IEnumerable<T>
     {
         public SinglyLinkedListNode<T> Head {  get; set; }
         private bool isHeadNull => Head == null;
