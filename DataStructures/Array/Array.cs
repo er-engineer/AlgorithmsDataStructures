@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DataStructures.Arrays
 {
+    
     public class Array<T> : IEnumerable<T>, ICloneable
     {
         public int Count { get; private set; }
         private T[] InnerList;
-        public int Capacity => InnerList.Length;
 
         public Array()
         {
