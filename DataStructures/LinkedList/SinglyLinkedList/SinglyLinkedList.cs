@@ -12,6 +12,11 @@ namespace DataStructures.LinkedList.SinglyLinkedList
         public SinglyLinkedListNode<T> Head {  get; set; }
         private bool isHeadNull => Head == null;
 
+        private bool IsHeadNull(SinglyLinkedListNode<T> head)
+        {
+            return Head == null ? throw new Exception("Head is null.") : false;
+        }
+
         public SinglyLinkedList(IEnumerable<T> collection)
         {
             foreach(var item in collection)
@@ -24,10 +29,7 @@ namespace DataStructures.LinkedList.SinglyLinkedList
         }
         public void RemoveFirst()
         {
-            if (isHeadNull)
-            {
-                throw new Exception("There is nothing to remove.");
-            }
+            IsHeadNull(this.Head);
             Head = Head.Next;
         }
 
@@ -47,6 +49,11 @@ namespace DataStructures.LinkedList.SinglyLinkedList
         {
             var current = new SinglyLinkedListNode<T>();
             current = Head;
+            if (isHeadNull)
+            {
+                throw new Exception("There is no item to be removed.");
+            }
+
             if (node.Equals(Head))
             {
                 RemoveFirst();
@@ -59,6 +66,28 @@ namespace DataStructures.LinkedList.SinglyLinkedList
             }
 
             current.Next = node.Next;
+        }
+
+        public void Remove(T value)
+        {
+            var current = new SinglyLinkedListNode<T>();
+            current = Head;
+
+            if(value == null)
+            {
+                throw new ArgumentNullException("Value is null.");
+            }
+
+            while(current != null)
+            {
+                if(current.Next.Value.Equals(value))
+                {
+                    current.Next = current.Next.Next;
+                    return;
+                }
+                current = current.Next;
+            }
+
         }
 
         public void AddFirst(T value)
