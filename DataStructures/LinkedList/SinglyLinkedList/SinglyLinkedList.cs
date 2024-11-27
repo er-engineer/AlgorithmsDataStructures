@@ -80,14 +80,23 @@ namespace DataStructures.LinkedList.SinglyLinkedList
 
             while(current != null)
             {
-                if(current.Next.Value.Equals(value))
+
+                if (isHeadNull)
                 {
+                    throw new Exception("List is empty.");
+                }
+                if(current.Next == null)
+                {
+                    throw new Exception("There is no item found.");
+                }
+                else if(current.Next.Value.Equals(value))
+                {
+                    
                     current.Next = current.Next.Next;
                     return;
                 }
                 current = current.Next;
             }
-
         }
 
         public void AddFirst(T value)

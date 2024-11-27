@@ -9,7 +9,7 @@ namespace Apps
         {
             var array = new int[] { 1,2,3,4,5,6};
             var linkedlist = new SinglyLinkedList<int>(array);
-            linkedlist.Remove(5);
+            linkedlist.Remove(0);
             foreach (var item in linkedlist)
             {
                 Console.WriteLine(item);
