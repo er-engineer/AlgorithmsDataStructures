@@ -12,6 +12,8 @@ namespace DataStructures.LinkedList.SinglyLinkedList
         public SinglyLinkedListNode<T> Head {  get; set; }
         private bool isHeadNull => Head == null;
 
+        public int Length { get; private set; }
+
         private bool IsHeadNull(SinglyLinkedListNode<T> head)
         {
             return Head == null ? throw new Exception("Head is null.") : false;
@@ -19,18 +21,54 @@ namespace DataStructures.LinkedList.SinglyLinkedList
 
         public SinglyLinkedList(IEnumerable<T> collection)
         {
+            Length = 0;
             foreach(var item in collection)
+            {
                 this.AddLast(item);
+            }
+                
         }
 
         public SinglyLinkedList()
         {
-            
+            Length = 0;
+            if (!isHeadNull)
+            {
+                var current = new SinglyLinkedListNode<T>();
+                current = Head;
+                while (current != null)
+                {
+                    current = current.Next;
+                    Length++;
+                }
+            }  
+        }  
+        
+        public void Clear()
+        {
+            Head = null;
+            Length = 0;
         }
+
+        public T GetElementByIndex(int index)
+        {
+            int counter = 0;
+            var current = new SinglyLinkedListNode<T>();
+            current = Head;
+            while(counter != index)
+            {
+                current = current.Next;
+                counter++;
+            }
+
+            return current.Value;
+        }
+
         public void RemoveFirst()
         {
             IsHeadNull(this.Head);
             Head = Head.Next;
+            Length--;
         }
 
         public void RemoveLast()
@@ -43,6 +81,7 @@ namespace DataStructures.LinkedList.SinglyLinkedList
             while(current.Next.Next != null)
                 current = current.Next;
             current.Next = null;
+            Length--;
         }
 
         public void Remove(SinglyLinkedListNode<T> node)
@@ -66,6 +105,7 @@ namespace DataStructures.LinkedList.SinglyLinkedList
             }
 
             current.Next = node.Next;
+            Length--;
         }
 
         public void Remove(T value)
@@ -93,10 +133,13 @@ namespace DataStructures.LinkedList.SinglyLinkedList
                 {
                     
                     current.Next = current.Next.Next;
+                    Length--;
                     return;
+                    
                 }
                 current = current.Next;
             }
+            
         }
 
         public void AddFirst(T value)
@@ -104,6 +147,7 @@ namespace DataStructures.LinkedList.SinglyLinkedList
             var newNode = new SinglyLinkedListNode<T>(value);
             newNode.Next = Head;
             Head = newNode;
+            Length++;
         }
 
         public void AddLast(T value)
@@ -122,7 +166,8 @@ namespace DataStructures.LinkedList.SinglyLinkedList
                 }
                 current.Next = newNode;
             }
-            
+            Length++;
+
         }
 
         public void AddAfter(SinglyLinkedListNode<T> node, T value)
@@ -146,6 +191,7 @@ namespace DataStructures.LinkedList.SinglyLinkedList
                 {
                     newNode.Next = current.Next;
                     current.Next = newNode;
+                    Length++; 
                     return;
                 }
                 current = current.Next;

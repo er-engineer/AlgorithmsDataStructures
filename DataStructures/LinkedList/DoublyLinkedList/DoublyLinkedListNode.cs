@@ -17,6 +17,10 @@ namespace DataStructures.LinkedList.DoublyLinkedList
             Value = value;
         }
 
+        public DoublyLinkedListNode()
+        {
+        }
+
         public override string ToString() => Value.ToString();
         
     }
