@@ -8,7 +8,7 @@ using DataStructures.Tree.BinaryTree;
 
 namespace DataStructures.Tree.BinarySearchTree
 {
-    public class BinarySearchTree<T> : IEnumerable<T> where T: IComparable<T>
+    public class BinarySearchTree<T> : IEnumerable<T> where T: IComparable
     {
         public Node<T> Root { get; set; }
 

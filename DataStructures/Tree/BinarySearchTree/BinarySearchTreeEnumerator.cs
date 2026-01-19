@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace DataStructures.Tree.BinarySearchTree
 {
-    public class BinarySearchTreeEnumerator<T> : IEnumerator<T> where T : IComparable<T>
+    public class BinarySearchTreeEnumerator<T> : IEnumerator<T> where T : IComparable
     {
         private List<Node<T>> list;
         private int index = -1;
