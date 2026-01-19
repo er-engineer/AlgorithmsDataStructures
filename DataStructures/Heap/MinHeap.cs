@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataStructures.Heap
-{
+{/*
     public class MinHeap<T> : BinaryHeap<T>, IEnumerable<T> where T : IComparable
     {
         public MinHeap() : base()
@@ -44,5 +44,5 @@ namespace DataStructures.Heap
                 index = GetParentIndex(index);
             }
         }
-    }
+    }*/
 }

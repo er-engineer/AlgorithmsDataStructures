@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataStructures.Shared;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace DataStructures.Heap
 {
-    public abstract class BinaryHeap<T> : IEnumerable<T> where T : IComparable
+    public class BinaryHeap<T> : IEnumerable<T> where T : IComparable
     {
         public T[] Array { get; private set; }
         protected int Position { get; set; }
         public int Count { get; private set; }
+
+        private readonly IComparer<T> Comparer;
+        private readonly bool IsMax;
 
         public BinaryHeap()
         {
@@ -31,6 +35,50 @@ namespace DataStructures.Heap
             Array = new T[collection.Count()];
             Position = 0;
             foreach (var item in collection) Add(item);
+        }
+        
+        public BinaryHeap(SortDirection sortDirection,
+            IEnumerable<T> initial,
+            IComparer<T> comparer)
+        {
+            Position = 0;
+            Count = 0;
+
+            // SortDirection is a non-nullable enum, so remove the null check
+            this.IsMax = sortDirection == SortDirection.Descending;
+
+            if (comparer != null)
+            {
+                this.Comparer = new CustomComparer<T>(sortDirection, comparer);
+            }
+            else
+            {
+                this.Comparer = new CustomComparer<T>(sortDirection, Comparer<T>.Default);
+            }
+
+            if (initial != null)
+            {
+                Array = new T[initial.Count()];
+                foreach (var item in initial) Add(item);
+            }
+            else
+            {
+                Array = new T[128];
+            }
+        }
+        public BinaryHeap(SortDirection sortDirection,
+            IComparer<T> comparer)
+            : this(sortDirection, null, comparer)
+        {
+        }
+        public BinaryHeap(SortDirection sortDirection = SortDirection.Ascending)
+            : this(sortDirection, null, null)
+        {
+        }
+        public BinaryHeap(SortDirection sortDirection,
+            IEnumerable<T> initial)
+            : this(sortDirection, initial, null)
+        {
         }
 
         protected int GetLeftChildIndex(int parentIndex) => 2 * parentIndex + 1;
@@ -78,8 +126,32 @@ namespace DataStructures.Heap
             return temp;
         }
 
-        protected abstract void HeapifyUp();
-        protected abstract void HeapifyDown();
+        protected void HeapifyUp()
+        {
+            int index = Position - 1;
+            while (Comparer.Compare(Array[index], GetParent(index)) < 0 && !IsRoot(index))
+            {
+                Swap(GetParentIndex(index), index);
+                index = GetParentIndex(index);
+            }
+        }
+        protected void HeapifyDown()
+        {
+            int index = 0;
+            while (HasLeftChild(index))
+            {
+                var variableIndex = (HasRightChild(index) &&
+                    Comparer.Compare(GetRightChild(index), GetLeftChild(index)) < 0) ?
+                    GetRightChildIndex(index) : GetLeftChildIndex(index);
+
+                if (Comparer.Compare(Array[variableIndex], Array[index]) >= 0) break;
+
+                Swap(index, variableIndex);
+                index = variableIndex;
+            }
+        }
+
+
 
         public IEnumerator<T> GetEnumerator()
         {

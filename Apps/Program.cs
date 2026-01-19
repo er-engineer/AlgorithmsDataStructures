@@ -1,6 +1,7 @@
 ﻿using DataStructures.Array;
 using DataStructures.LinkedList.DoublyLinkedList;
 using DataStructures.LinkedList.SinglyLinkedList;
+using DataStructures.Shared;
 using DataStructures.Tree.BinarySearchTree;
 using DataStructures.Tree.BinaryTree;
 using System.Security.Cryptography;
@@ -11,7 +12,7 @@ namespace Apps
     {
         static void Main(string[] args)
         {
-         
+            
             Console.ReadKey();
         }
     }

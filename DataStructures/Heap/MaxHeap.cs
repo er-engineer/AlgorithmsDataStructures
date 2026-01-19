@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructures.Heap
 {
+    /*
     internal class MaxHeap<T> : BinaryHeap<T>, IEnumerable<T> where T : IComparable
     {
         public MaxHeap() : base()
@@ -48,5 +49,5 @@ namespace DataStructures.Heap
                 index = GetParentIndex(index);
             }
         }
-    }
+    }*/
 }
